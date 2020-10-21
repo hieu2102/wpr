@@ -1,0 +1,191 @@
+html {
+  font-family: 'Proxima Nova','Helvetica','Arial', sans-serif;
+  font-size: 18px;
+  color: #222222;
+}
+
+.header {
+border-style: solid;
+border-color: #ccc;
+border-width: 1px;	
+height: 80px;
+}
+
+.quizz-name {
+	background-color: rgba(255,255,255,0.9);
+	font-family: 'Pangolin', 'Trebuchet MS', cursive;
+	font-size: 60px;
+	color: black;
+	margin: 10px;
+	height: 425px;
+
+}
+.course-name {
+	font-family: 'Helvetica', sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	color: #ee3322;
+}
+
+.mern-stack {
+	background-color: #ffee00;
+	border-radius: 100%;
+	font-weight: bold;
+	transform: rotate(-30deg);
+}
+
+
+.author {
+	font-size: 14px;
+	text-align: center;
+}
+
+.btn-blue {
+  border: none;
+  color: white;
+  padding: 15px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: #2196F3;  
+}
+
+.btn-blue:hover{
+	background-color: #0d8bf2;
+}
+
+.btn-green {
+  border: none;
+  color: white;
+  padding: 15px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: #4CAF50;
+}
+
+.btn-green:hover {
+	background-color: #46a049;
+}
+
+.question {
+	white-space: nowrap;
+	background-color: #f1f1f1;
+}
+
+.checkmark {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	height: 19px;
+	width: 19px;
+	border-radius: 100%;
+	background-color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.radiocontainer:hover input ~ .checkmark {
+  /*nothing*/
+}
+.radiocontainer:hover {
+  background-color: #ddd;
+}
+
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+
+/* The radiocontainer */
+.radiocontainer {
+  background-color:#f1f1f1;
+  display: block;
+  position: relative;
+  padding:10px 10px 10px 50px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  word-wrap: break-word;
+}
+
+/* Hide the browser's default radio button */
+.radiocontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  height: 13px;
+  width: 13px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+/* Show the indicator (dot/circle) when checked */
+.radiocontainer input:checked ~ .checkmark:after {
+  display: block;
+}
+/* When the radio button is checked, add a white background */
+.radiocontainer input:checked ~ .checkmark {
+  background-color: white;
+  border-color:black;
+}
+/* Style the indicator (dot/circle) */
+.radiocontainer .checkmark:after {
+  top: 3px;
+  left: 3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: black;
+  border-color: black;
+}
+@media screen and (max-width:600px) {
+  .quizresultbtn {
+    display:block;
+    width:100%;
+  }
+}
+.checkedlabel {
+  background-color:#ddd;
+}
+
+.answer-block {
+  margin-top:30px;
+  margin-bottom: 30px;
+}
+
+
+.radiocontainer.wrong {
+  background-color:#f8d7da;
+}
+.radiocontainer.correct {
+  background-color:#ddd;
+}
+.radiocontainer.correct.selected {
+  background-color:#d4edda;
+}
+.answercomment {
+  background-color:rgba(0, 0, 0, 0.2);
+  color:white;
+  white-space: nowrap;
+  position:absolute;
+  right:10px;
+  top:10px;
+}
