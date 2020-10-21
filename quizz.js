@@ -121,18 +121,21 @@ function submitQuiz(){
 			// get choice list of the question 
 			choiceList = questionList[i].getElementsByTagName('div')[0].children;
 			for (k = 0; k < choiceList.length; k++){
+				choiceList[k].children[0].disabled =  true;
 				if (choiceList[k].children[0].checked){
 					if (choiceList[k].id == correctAnswer){
 						let selectedChoice = createNode('span')
 						selectedChoice.className = 'answercomment';
 						selectedChoice.innerHTML = "Correct Answer"
 						append(choiceList[k],selectedChoice)
+						choiceList[k].className = 'radiocontainer correct selected'
 						break;
 					}
 					let selectedChoice = createNode('span')
 					selectedChoice.className = 'answercomment';
 					selectedChoice.innerHTML = "Your Answer"
 					append(choiceList[k],selectedChoice)
+					choiceList[k].className = 'radiocontainer wrong'
 
 				}
 				if (choiceList[k].id == correctAnswer){
@@ -140,6 +143,7 @@ function submitQuiz(){
 					selectedChoice.className = 'answercomment';
 					selectedChoice.innerHTML = "Correct Answer"
 					append(choiceList[k],selectedChoice)
+					choiceList[k].className = 'radiocontainer correct'
 				}
 				
 			}
@@ -162,11 +166,12 @@ function clickRadio(element){
       x = document.querySelectorAll('.radiocontainer')
       for (i = 0; i< x.length;i++){
       	if (x[i].name == q && x[i].id ==n){
-      		x[i].className = x[i].className.replace(" checkedlabel", "");
-      		x[i].style.backgroundColor = '#ddd';
+      		x[i].className = 'radiocontainer selected'
+      		// x[i].style.backgroundColor = '#ddd';
       	}
       	else{
-      		x[i].style.backgroundColor = '#f1f1f1';
+      		x[i].className = 'radiocontainer'
+      		// x[i].style.backgroundColor = '#f1f1f1';
       	}
       }
   }
