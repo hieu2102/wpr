@@ -34,6 +34,7 @@ function startQuiz(){
 			answerDiv = createNode('div')
 
 			div.className= 'question-block';
+			div.id = question._id;
 			answerDiv.className = 'answer-block';
 			questionNo.innerHTML = `Question ${i+1} of ${questions.length}`
 			questionText.innerHTML = `${question.text} <br>`
@@ -60,11 +61,6 @@ function startQuiz(){
 				label.className= 'radiocontainer'
 				span.className = 'checkmark';
 				append(label,input)
-				// let selectedChoice = createNode('span')
-				// selectedChoice.className = 'answercomment';
-				// selectedChoice.innerHTML = "Your Answer"
-				
-				// append(label,selectedChoice)
 				append(label,span)
 				append(answerDiv,label)
 
@@ -84,7 +80,8 @@ function startQuiz(){
 }
 
 function submitQuiz(){
-	const url = "https://wpr-quiz-api.herokuapp.com/attempts/:id/submit";
+	var attemptId = document.querySelectorAll('.quiz-form')[0];
+	var url = "https://wpr-quiz-api.herokuapp.com/attempts/"+attemptId.id+"/submit";
 	var payload = {};
 	var answers = {};
 	var requestBody = new FormData();
@@ -99,24 +96,55 @@ function submitQuiz(){
 	payload['answers'] = answers;
 	requestBody.append("json", JSON.stringify(payload));
 	var request = {
-		headers: {"content-type": "application/json;charset=UTF-8"},
+		headers: {"content-type": "application/javascript"},
 		method: "POST",
-		mode: "cors",
-		body: requestBody
+		body: JSON.stringify(payload)
 	};
 	fetch(url,request)
 	.then(response => response.json())
 	.then(function(data){
-		let correctAnswers  = data.correctAnswers,
+		let 
+		correctAnswers  = data.correctAnswers,
 		qIds = Object.keys(correctAnswers),
-		answerList = data.answers,
-		aIds = Object.keys(answerList),
-		choiceList = document.querySelectorAll('.radiocontainer');
-		
-		for(i= 0;i < choiceList.length;i++){
+		questionList = document.querySelectorAll('.question-block');
+		for(i= 0;i < questionList.length;i++){
+			// iterate over questions 
+
+			// get correct answer index for the question 
+			correctAnswer = null
+			for (j=0; j < qIds.length; j++){
+				if (questionList[i].id == qIds[j]){
+					correctAnswer = correctAnswers[qIds[j]]
+				}
+			}
+
+			// get choice list of the question 
+			choiceList = questionList[i].getElementsByTagName('div')[0].children;
+			for (k = 0; k < choiceList.length; k++){
+				if (choiceList[k].children[0].checked){
+					if (choiceList[k].id == correctAnswer){
+						let selectedChoice = createNode('span')
+						selectedChoice.className = 'answercomment';
+						selectedChoice.innerHTML = "Correct Answer"
+						append(choiceList[k],selectedChoice)
+						break;
+					}
+					let selectedChoice = createNode('span')
+					selectedChoice.className = 'answercomment';
+					selectedChoice.innerHTML = "Your Answer"
+					append(choiceList[k],selectedChoice)
+
+				}
+				if (choiceList[k].id == correctAnswer){
+					let selectedChoice = createNode('span')
+					selectedChoice.className = 'answercomment';
+					selectedChoice.innerHTML = "Correct Answer"
+					append(choiceList[k],selectedChoice)
+				}
+				
 			}
 		}
-	}
+	})
 }
 
 function createNode(element) {
