@@ -17,12 +17,13 @@ function startQuiz(){
 		let submit = createNode('input')
 			submit.type = 'submit'
 			submit.className='btn-green'
+			submit.id='submit-quiz'
 			submit.onclick  = function(){
-				submitQuiz()
+				transitStage('review')
 			}
 		
 		let questions = data.questions;
-		let content = document.querySelector('body')
+		let content = document.getElementById('attempt-quiz')
 		let form = createNode('form')
 		form.className = "quiz-form";
 		form.id= data._id
@@ -107,9 +108,9 @@ function submitQuiz(){
 		correctAnswers  = data.correctAnswers,
 		qIds = Object.keys(correctAnswers),
 		questionList = document.querySelectorAll('.question-block');
+		// iterate over questions 
+		var score = 0;
 		for(i= 0;i < questionList.length;i++){
-			// iterate over questions 
-
 			// get correct answer index for the question 
 			correctAnswer = null
 			for (j=0; j < qIds.length; j++){
@@ -117,7 +118,6 @@ function submitQuiz(){
 					correctAnswer = correctAnswers[qIds[j]]
 				}
 			}
-
 			// get choice list of the question 
 			choiceList = questionList[i].getElementsByTagName('div')[0].children;
 			for (k = 0; k < choiceList.length; k++){
@@ -129,6 +129,7 @@ function submitQuiz(){
 						selectedChoice.innerHTML = "Correct Answer"
 						append(choiceList[k],selectedChoice)
 						choiceList[k].className = 'radiocontainer correct selected'
+						score ++;
 						break;
 					}
 					let selectedChoice = createNode('span')
@@ -148,6 +149,7 @@ function submitQuiz(){
 				
 			}
 		}
+		reviewQuiz(score)
 	})
 }
 
@@ -167,11 +169,52 @@ function clickRadio(element){
       for (i = 0; i< x.length;i++){
       	if (x[i].name == q && x[i].id ==n){
       		x[i].className = 'radiocontainer selected'
-      		// x[i].style.backgroundColor = '#ddd';
       	}
       	else{
       		x[i].className = 'radiocontainer'
-      		// x[i].style.backgroundColor = '#f1f1f1';
       	}
       }
   }
+function reviewQuiz(score){
+	let 
+	resultSection = document.getElementById('review-quiz')
+	resultDiv = createNode('div'),
+	resultHeader = createNode('h1'),
+	resultScore = createNode('h2'),
+	scorePercentage = createNode('p'),
+	resultComment = createNode('p'),
+	tryAgain = createNode('button')
+	resultHeader.innerHTML = 'Result:';
+	resultScore.innerHTML = score +'/10';
+	scorePercentage.innerHTML = score/10 +'%';
+	
+	tryAgain.className = 'btn-blue';
+	tryAgain.innerHTML = 'Try Again';
+	tryAgain.onclick = function(){
+		transitStage('introduction')
+	}
+	append(resultDiv, resultHeader);
+	append(resultDiv, resultScore);
+	append(resultDiv, scorePercentage);
+	append(resultDiv, resultComment);
+	append(resultDiv, tryAgain);
+	append(resultSection, resultDiv)
+	resultDiv.scrollIntoView()
+
+
+}
+function transitStage(stage){
+	switch(stage){
+		case 'introduction':
+			location.reload();			
+			break;
+		case 'attempt':
+			document.getElementById('introduction').innerHTML='';
+			startQuiz()
+			break;
+		case 'review':
+			document.getElementById('submit-quiz').remove();
+			submitQuiz()
+			break;
+	}
+}
