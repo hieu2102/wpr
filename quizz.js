@@ -187,11 +187,15 @@ function reviewQuiz(score){
 	resultHeader.innerHTML = 'Result:';
 	resultScore.innerHTML = score +'/10';
 	scorePercentage.innerHTML = score/10 +'%';
+
+	resultDiv.className = 'result-score';
+
+	
 	
 	tryAgain.className = 'btn-blue';
 	tryAgain.innerHTML = 'Try Again';
 	tryAgain.onclick = function(){
-		transitStage('introduction')
+		transitStage('start-quiz-sec')
 	}
 	append(resultDiv, resultHeader);
 	append(resultDiv, resultScore);

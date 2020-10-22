@@ -121,6 +121,13 @@ img {
   padding-bottom: 18px;
 }
 
+.result-score {
+  background-color: #dedaca;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 18px;
+}
+
 .btn-blue {
   border: none;
   color: white;
