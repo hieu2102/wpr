@@ -1,14 +1,69 @@
+* {
+  margin: auto;
+  max-width: 700px;
+}
+body {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
 html {
   font-family: 'Proxima Nova','Helvetica','Arial', sans-serif;
   font-size: 18px;
   color: #222222;
 }
 
+br { height: 18px;}
+
+h1 {
+  font-size: 30px;
+  font-family: sans-serif;
+}
+/*Header*/
 .header {
-border-style: solid;
-border-color: #ccc;
-border-width: 1px;	
-height: 80px;
+  border-style: solid;
+  border-color: #ccc;
+  border-width: 1px;	
+  height: 80px;
+}
+
+.right {
+  width: 30%;
+  margin-right: 10px;
+  display: inline-grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.mern-stack-outer{
+  background-color: #ffee00;
+  border-radius: 100%;
+  padding: 10px;
+  float: left;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+.quiz-image {
+  position: relative;
+  text-align: center;
+}
+
+img {
+  width: 700px;
+  height: 425px;
+}
+
+#dcm {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 8px;
+  font-family: 'Trebuchet MS', cursive;
+  font-size: 60px;
 }
 
 .quizz-name {
@@ -18,8 +73,13 @@ height: 80px;
 	color: black;
 	margin: 10px;
 	height: 425px;
-
 }
+
+#start-quiz {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
 .course-name {
 	font-family: 'Helvetica', sans-serif;
 	font-size: 32px;
@@ -28,8 +88,6 @@ height: 80px;
 }
 
 .mern-stack {
-	background-color: #ffee00;
-	border-radius: 100%;
 	font-weight: bold;
 	transform: rotate(-30deg);
 }
@@ -38,6 +96,13 @@ height: 80px;
 .author {
 	font-size: 14px;
 	text-align: center;
+}
+
+#start-quiz-sec {
+  background-color: #dedaca;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 18px;
 }
 
 .btn-blue {

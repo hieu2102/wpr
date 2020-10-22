@@ -205,11 +205,11 @@ function reviewQuiz(score){
 }
 function transitStage(stage){
 	switch(stage){
-		case 'introduction':
+		case 'start-quiz-sec':
 			location.reload();			
 			break;
 		case 'attempt':
-			document.getElementById('introduction').innerHTML='';
+			document.getElementById('start-quiz-sec').innerHTML='';
 			startQuiz()
 			break;
 		case 'review':
